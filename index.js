@@ -51,22 +51,15 @@ class Sprite {
         );
 
         //attack box
-        // if (this.isAttacking) {
-        //     context.fillStyle = "green";
-        //     context.fillRect(
-        //         this.attackBox.position.x,
-        //         this.attackBox.position.y,
-        //         this.attackBox.width,
-        //         this.attackBox.height
-        //     );
-        // }
-        context.fillStyle = "green"; // ! DELETE
-        context.fillRect(
-            this.attackBox.position.x,
-            this.attackBox.position.y,
-            this.attackBox.width,
-            this.attackBox.height
-        );
+        if (this.isAttacking) {
+            context.fillStyle = "green";
+            context.fillRect(
+                this.attackBox.position.x,
+                this.attackBox.position.y,
+                this.attackBox.width,
+                this.attackBox.height
+            );
+        }
     }
 
     update() {
