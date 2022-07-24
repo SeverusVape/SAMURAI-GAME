@@ -1,4 +1,9 @@
 <style>
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
     body {
         display: flex;
         justify-content: center;
@@ -7,7 +12,79 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .container {
+        align-items: center;
+        position: absolute;
+        display: flex;
+        width: 100%;
+        padding: 20px;
+    }
+    .player {
+        background-color: yellow;
+        height: 30px;
+        width: 100%;
+    }
+    .timer {
+        background-color: brown;
+        height: 100px;
+        width: 100px;
+        flex-shrink: 0;
+    }
+    .enemy {
+        background-color: yellow;
+        height: 30px;
+    }
 </style>
-<canvas></canvas>
 
-<script src="index.js"></script>
+<body>
+    <div style="position: relative; display: inline-block">
+        <div class="container">
+            <!-- player health -->
+            <div
+                style="
+                    position: relative;
+                    height: 30px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                "
+            >
+                <div class="player"></div>
+                <div
+                    id="playerBar"
+                    style="
+                        position: absolute;
+                        background: blue;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                    "
+                ></div>
+            </div>
+
+            <!-- timer -->
+            <div class="timer"></div>
+
+            <!-- enemy health -->
+            <div style="position: relative; height: 30px; width: 100%">
+                <div class="enemy"></div>
+                <div
+                    id="enemyBar"
+                    style="
+                        position: absolute;
+                        background: blue;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                    "
+                ></div>
+            </div>
+        </div>
+        <canvas></canvas>
+    </div>
+
+    <!-- script -->
+    <script src="index.js"></script>
+</body>
