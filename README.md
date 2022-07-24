@@ -1,6 +1,6 @@
 # SAMURAI FIGHTING GAME
 
-Simple fighting game made with JavaScript. The idea belongs to Chris Courses ( Youtube channel: Chris Courses ), the assets belongs to Brullov Studios, copied by Severus Vape for fun and educational porposes.
+Simple fighting game made with JavaScript. The idea belongs to Chris Courses ( Youtube channel: Chris Courses ), the assets belongs to Brullov Studios & Luiz Melo, copied by Severus Vape for fun and educational porposes.
 
 ## Screenshots
 

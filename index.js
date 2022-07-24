@@ -30,6 +30,16 @@ const background = new Sprite({
     imageSrc: "./img/background.png",
 });
 
+const shop = new Sprite({
+    position: {
+        x: 640,
+        y: 161,
+    },
+    imageSrc: "./img/shop.png",
+    scale: 2.5,
+    framesMax: 6,
+});
+
 // player
 const player = new Fighter({
     position: {
@@ -43,6 +53,31 @@ const player = new Fighter({
     offset: {
         x: 0,
         y: 0,
+    },
+    imageSrc: "./img/samuraiMack/Idle.png",
+    scale: 2.3,
+    framesMax: 8,
+    offset: {
+        x: 100,
+        y: 130,
+    },
+    sprites: {
+        idle: {
+            imageSrc: "./img/samuraiMack/Idle.png",
+            framesMax: 8,
+        },
+        run: {
+            imageSrc: "./img/samuraiMack/Run.png",
+            framesMax: 8,
+        },
+        jump: {
+            imageSrc: "./img/samuraiMack/Jump.png",
+            framesMax: 2,
+        },
+        fall: {
+            imageSrc: "./img/samuraiMack/Fall.png",
+            framesMax: 2,
+        },
     },
 });
 
@@ -71,8 +106,9 @@ const animate = function () {
     context.fillStyle = "black";
     context.fillRect(0, 0, canvas.width, canvas.height);
     background.update();
+    shop.update();
     player.update();
-    enemy.update();
+    //enemy.update();
 
     player.velocity.x = 0;
     enemy.velocity.x = 0;
@@ -80,8 +116,18 @@ const animate = function () {
     // player movement
     if (keys.a.pressed && player.lastKey === "a") {
         player.velocity.x = -5;
+        player.switchSprites("run");
     } else if (keys.d.pressed && player.lastKey === "d") {
         player.velocity.x = 5;
+        player.switchSprites("run");
+    } else {
+        player.switchSprites("idle");
+    }
+
+    if (player.velocity.y < 0) {
+        player.switchSprites("jump");
+    } else if (player.velocity.y > 0) {
+        player.switchSprites("fall");
     }
 
     //enemy movement
