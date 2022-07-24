@@ -55,11 +55,11 @@ const player = new Fighter({
         y: 0,
     },
     imageSrc: "./img/samuraiMack/Idle.png",
-    scale: 2.3,
+    scale: 2.5,
     framesMax: 8,
     offset: {
-        x: 100,
-        y: 130,
+        x: 215,
+        y: 157,
     },
     sprites: {
         idle: {
@@ -78,6 +78,18 @@ const player = new Fighter({
             imageSrc: "./img/samuraiMack/Fall.png",
             framesMax: 2,
         },
+        attack1: {
+            imageSrc: "./img/samuraiMack/Attack1.png",
+            framesMax: 6,
+        },
+    },
+    attackBox: {
+        offset: {
+            x: 100,
+            y: 50,
+        },
+        width: 158,
+        height: 50,
     },
 });
 
@@ -95,7 +107,43 @@ const enemy = new Fighter({
         x: -50,
         y: 0,
     },
-    color: "blue",
+    imageSrc: "./img/kenji/Idle.png",
+    scale: 2.5,
+    framesMax: 4,
+    offset: {
+        x: 215,
+        y: 167,
+    },
+    sprites: {
+        idle: {
+            imageSrc: "./img/kenji/Idle.png",
+            framesMax: 4,
+        },
+        run: {
+            imageSrc: "./img/kenji/Run.png",
+            framesMax: 8,
+        },
+        jump: {
+            imageSrc: "./img/kenji/Jump.png",
+            framesMax: 2,
+        },
+        fall: {
+            imageSrc: "./img/kenji/Fall.png",
+            framesMax: 2,
+        },
+        attack1: {
+            imageSrc: "./img/kenji/Attack1.png",
+            framesMax: 4,
+        },
+    },
+    attackBox: {
+        offset: {
+            x: -170,
+            y: 50,
+        },
+        width: 170,
+        height: 50,
+    },
 });
 
 decreaseTimer();
@@ -108,7 +156,7 @@ const animate = function () {
     background.update();
     shop.update();
     player.update();
-    //enemy.update();
+    enemy.update();
 
     player.velocity.x = 0;
     enemy.velocity.x = 0;
@@ -133,8 +181,18 @@ const animate = function () {
     //enemy movement
     if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
         enemy.velocity.x = -5;
+        enemy.switchSprites("run");
     } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
         enemy.velocity.x = 5;
+        enemy.switchSprites("run");
+    } else {
+        enemy.switchSprites("idle");
+    }
+
+    if (enemy.velocity.y < 0) {
+        enemy.switchSprites("jump");
+    } else if (enemy.velocity.y > 0) {
+        enemy.switchSprites("fall");
     }
 
     // collision detect
@@ -143,11 +201,17 @@ const animate = function () {
             rectangle1: player,
             rectangle2: enemy,
         }) &&
-        player.isAttacking
+        player.isAttacking &&
+        player.framesCurrent === 4
     ) {
         player.isAttacking = false;
         enemy.health -= 20;
         document.querySelector("#enemyBar").style.width = `${enemy.health}%`;
+    }
+
+    // player hit miss
+    if (player.isAttacking && player.framesCurrent === 4) {
+        player.isAttacking = false;
     }
 
     if (
@@ -155,11 +219,16 @@ const animate = function () {
             rectangle1: enemy,
             rectangle2: player,
         }) &&
-        enemy.isAttacking
+        enemy.isAttacking &&
+        enemy.framesCurrent === 2
     ) {
         enemy.isAttacking = false;
         player.health -= 20;
         document.querySelector("#playerBar").style.width = `${player.health}%`;
+    }
+    // enemy hit miss
+    if (enemy.isAttacking && enemy.framesCurrent === 2) {
+        enemy.isAttacking = false;
     }
 
     // end game based on health
