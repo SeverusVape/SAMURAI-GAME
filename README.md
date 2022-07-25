@@ -38,4 +38,4 @@ player 2 (right)
 
 #### Reset and start over
 
-Takes two numbers and returns the sum.
+Restart your browser.

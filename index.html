@@ -1,6 +1,8 @@
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
     * {
         box-sizing: border-box;
+        font-family: "Press Start 2P", cursive;
         padding: 0;
         margin: 0;
     }
@@ -20,21 +22,25 @@
         padding: 20px;
     }
     .player {
-        background-color: yellow;
+        background-color: #a10035;
         height: 30px;
         width: 100%;
     }
     .timer {
-        background-color: brown;
-        height: 100px;
+        background-color: #06283d;
+        height: 60px;
         width: 100px;
+        color: azure;
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
+        border: 3px solid azure;
+        border-radius: 5px;
+        font-size: 1.8em;
     }
     .enemy {
-        background-color: yellow;
+        background-color: #a10035;
         height: 30px;
     }
 </style>
@@ -46,10 +52,13 @@
             <div
                 style="
                     position: relative;
-                    height: 30px;
                     width: 100%;
                     display: flex;
                     justify-content: flex-end;
+                    border-top: 3px solid azure;
+                    border-left: 3px solid azure;
+                    border-bottom: 3px solid azure;
+                    border-radius: 5px 0 0 5px;
                 "
             >
                 <div class="player"></div>
@@ -57,7 +66,7 @@
                     id="playerBar"
                     style="
                         position: absolute;
-                        background: blue;
+                        background: #383c66;
                         top: 0;
                         right: 0;
                         bottom: 0;
@@ -70,13 +79,22 @@
             <div class="timer">10</div>
 
             <!-- enemy health -->
-            <div style="position: relative; height: 30px; width: 100%">
+            <div
+                style="
+                    position: relative;
+                    width: 100%;
+                    border-top: 3px solid azure;
+                    border-right: 3px solid azure;
+                    border-bottom: 3px solid azure;
+                    border-radius: 0 5px 5px 0;
+                "
+            >
                 <div class="enemy"></div>
                 <div
                     id="enemyBar"
                     style="
                         position: absolute;
-                        background: blue;
+                        background: #383c66;
                         top: 0;
                         right: 0;
                         bottom: 0;
@@ -89,7 +107,8 @@
             class="displayText"
             style="
                 position: absolute;
-                color: azure;
+                font-size: 2.5em;
+                color: #efe9e9;
                 justify-content: center;
                 align-items: center;
                 right: 0;
@@ -105,6 +124,12 @@
     </div>
 
     <!-- script -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+        integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
     <script src="js/utils.js"></script>
     <script src="js/classes.js"></script>
     <script src="index.js"></script>

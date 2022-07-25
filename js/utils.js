@@ -1,4 +1,4 @@
-let timer = 15;
+let timer = 60;
 let timerID;
 
 const rectangularCollision = function ({ rectangle1, rectangle2 }) {

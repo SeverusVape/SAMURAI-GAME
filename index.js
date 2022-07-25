@@ -171,6 +171,8 @@ const animate = function () {
     context.fillRect(0, 0, canvas.width, canvas.height);
     background.update();
     shop.update();
+    context.fillStyle = "rgba(255, 255, 255, 0.15)";
+    context.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
     enemy.update();
 
@@ -222,7 +224,10 @@ const animate = function () {
     ) {
         enemy.takeHit();
         player.isAttacking = false;
-        document.querySelector("#enemyBar").style.width = `${enemy.health}%`;
+        //document.querySelector("#enemyBar").style.width = `${enemy.health}%`;
+        gsap.to("#enemyBar", {
+            width: `${enemy.health}%`,
+        });
     }
 
     // player hit miss
@@ -240,7 +245,10 @@ const animate = function () {
     ) {
         player.takeHit();
         enemy.isAttacking = false;
-        document.querySelector("#playerBar").style.width = `${player.health}%`;
+        //document.querySelector("#playerBar").style.width = `${player.health}%`;
+        gsap.to("#playerBar", {
+            width: `${player.health}%`,
+        });
     }
     // enemy hit miss
     if (enemy.isAttacking && enemy.framesCurrent === 2) {
