@@ -4,7 +4,7 @@ Simple fighting game made with JavaScript. The idea belongs to Chris Courses ( Y
 
 ## Screenshots
 
-![App Screenshot](https://github.com/SeverusVape/SAMURAI-GAME/blob/master/img/screenshot/Screenshot (6).png?raw=true)
+![App Screenshot](https://github.com/SeverusVape/SAMURAI-GAME/blob/master/img/screenshot/picture.png?raw=true)
 
 ## How to run
 
